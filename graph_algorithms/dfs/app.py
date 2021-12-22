@@ -1,6 +1,5 @@
-
 graph = {
-    'a':['b','c'],
+    'a':['c','b'],
     'b':['d','e'],
     'c':['f','g'],
     'd':[],
@@ -8,27 +7,27 @@ graph = {
     'f':[],
     'g':[]
 }
-stack=[]
+
 
 #iteration
-def dfs(graph,target):
+""" def dfs(graph,target):
     stack = [target]
-    print (stack)
 
     while (len(stack) > 0):
         current = stack.pop()
         print(current)
         for neighbour in graph[current]:
-            stack.append(neighbour)
+            stack.append(neighbour) """
 
 #recursion
-""" def dfs(graph,target):
+stack=[]
+def dfs(graph,target):
+    
     print(target)
-    stack.append(target)
 
     current = graph[target]
-    for i in current:
-        dfs(graph,i) """
+    for neighbour in current:
+        dfs(graph,neighbour)
 
 
 dfs(graph,'a')
