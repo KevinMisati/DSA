@@ -1,1 +1,2 @@
 find the target sum using the smallest array combination
+smallestSubarray(int targetSum, int[] arr)
