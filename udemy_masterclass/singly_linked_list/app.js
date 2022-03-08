@@ -14,6 +14,7 @@ class SinglyLinkedList{
         this.val = null
         this.length = 0
     }
+    //O(1)
     push(val){
         let newNode = new Node(val)
         if(!this.head){
@@ -27,6 +28,7 @@ class SinglyLinkedList{
         this.length++
         return this
     }
+    // O(N)
     traverse(){
         let current = this.head
         while(current){
@@ -75,6 +77,7 @@ class SinglyLinkedList{
         this.length++
         return newHead
 }
+    // O(N)
     get(index){
         if (index < 0 || index > this.length){
             return undefined
@@ -89,14 +92,77 @@ class SinglyLinkedList{
             return current
         }
     }
-}
 
+    set(index,val){
+        let found = this.get(index)
+        if (found){
+            found.val = val
+            return true
+        }
+        return false
+    }
+    insert(index,val){
+        if (index < 0 || index > this.length) return false
+        if (index === this.length) return this.push(val)
+        if (index === 0) return this.unshift(val)
+
+        let newNode = new Node(val)
+        let prev = this.get(index - 1)
+        let temp = prev.next
+        prev.next = newNode
+        newNode.next = temp
+        this.length++
+        return true
+    }
+    //O(1) or O(N)
+    remove(index){
+        if (index < 0 || index > this.length -1){
+            return undefined
+        }
+        if (index === this.length -1) return this.pop()
+        if (index === 0) return this.shift()
+
+        let found = this.get(index - 1)
+        let temp = found.next
+        found.next = temp.next
+        this.length--
+        return temp
+    }
+
+    print(){
+        let arr = []
+        let current = this.head
+        while(current){
+            arr.push(current.val)
+            current = current.next
+        }
+        console.log(arr)
+    }
+
+    reverse(){
+       let node = this.head
+       this.head = this.tail
+       this.tail = node
+       let prev = null
+       let next
+       for(let i =0;i<this.length;i++){
+           next = node.next
+           node.next = prev
+           prev = node
+           node = next
+       }
+    }
+}
 let list = new SinglyLinkedList()
 list.push("Hello")
 list.push("Welcome")
 list.push("Home")
 
-console.log(list.get(2))
+list.reverse()
+console.log(list.print())
+
+//console.log(list.remove(1))
+
 //console.log(list.unshift("Kevin"))
 //console.log(list.shift())
 //console.log(list.shift())
